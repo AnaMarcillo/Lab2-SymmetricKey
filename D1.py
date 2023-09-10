@@ -24,3 +24,13 @@ def aes_encrypt(plaintext, key):
     encryptor = cipher.encryptor()
     ciphertext = encryptor.update(plaintext) + encryptor.finalize()
     return ciphertext
+
+if __name__ == "__main__":
+    # Check if the correct number of command-line arguments are provided
+    if len(sys.argv) != 3:
+        print("Usage: python d_01.py <hello> <hello123>")
+        sys.exit(1)
+    plaintext = sys.argv[1]
+    key = sys.argv[2]
+    ciphertext = aes_encrypt(plaintext, key)
+    print("Ciphertext: ", binascii.hexlify(bytearray(ciphertext)))
