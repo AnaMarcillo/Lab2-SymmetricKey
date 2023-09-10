@@ -1,3 +1,6 @@
+# Import necessary modules from the cryptography library
+import sys 
+import hashlib
 from cryptography.hazmat.primitives.ciphers import Cipher, algorithms, modes
 from cryptography.hazmat.primitives import padding
 from cryptography.hazmat.backends import default_backend
@@ -28,9 +31,10 @@ def aes_encrypt(plaintext, key):
 if __name__ == "__main__":
     # Check if the correct number of command-line arguments are provided
     if len(sys.argv) != 3:
-        print("Usage: python d_01.py <hello> <hello123>")
+        print("Usage: python d_01.py <plaintext> <key>")
         sys.exit(1)
     plaintext = sys.argv[1]
     key = sys.argv[2]
     ciphertext = aes_encrypt(plaintext, key)
-    print("Ciphertext: ", binascii.hexlify(bytearray(ciphertext)))
+    print("Ciphertext: {} ({})".format(binascii.hexlify(bytearray(ciphertext[:2])).decode(), binascii.hexlify(bytearray(ciphertext[2:])).decode()))
+
